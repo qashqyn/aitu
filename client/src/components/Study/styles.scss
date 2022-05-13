@@ -1,0 +1,46 @@
+#study{
+    .container{
+        margin-top: 40px;
+        margin-bottom: 40px;
+        img{
+            width: 100%;
+        }
+        h3{
+            font-weight: 700;
+            font-size: 44px;
+        }
+        p{
+            font-size: 32px;
+        }
+        .col{
+            margin-bottom: 40px;
+        
+            .card{
+                height: 100%;
+                .card-body{
+                    display: flex;
+                    flex-direction: column;
+                    background-color: #220957;
+                    color: #fff;
+                    .card-title{
+                        font-size: 36px;
+                    }
+                    .card-text{
+                        flex-grow: 1;
+                        font-size: 24px;
+                    }
+                    .card-link{
+                        text-decoration: none;
+                        padding: 10px 16px;
+                        border-radius: 100px;
+                        border: #F2C94C solid 1px;
+                        display: inline;
+                        color: #fff;
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+
+    }
+}

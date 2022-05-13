@@ -1,0 +1,26 @@
+#applicants-list{
+    table{
+        tbody{
+            tr{
+                cursor: pointer;
+                td{
+                    &.waiting{
+                        color: var(--bs-warning);
+                    }
+                    &.approved{
+                        color: var(--bs-success);
+                    }
+                    &.dissmissed{
+                        color: var(--bs-danger);
+                    }
+                    &.true{
+                        color: var(--bs-success);
+                    }
+                    &.false{
+                        color: var(--bs-danger);
+                    }
+                }
+            }
+        }
+    }
+}

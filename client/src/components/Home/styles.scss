@@ -1,0 +1,79 @@
+#home{
+    color: #000000;
+    .carousel{
+        margin: 40px 0 60px;
+        .carousel-item{
+            width: 100%;
+            height: 500px;
+            img{
+                min-height: 100%;
+                min-width: 100%;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+                object-position: center;
+            }
+        }
+    }
+    .container{
+        padding-bottom: 200px;
+        .img-cards{
+            .img-card{
+                margin: auto;
+                width: 500px;
+                height: 500px;
+                position: relative;
+                img{
+                    min-width: 100%;
+                    min-height: 100%;
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    object-position: center;
+                }
+                .title{
+                    font-weight: 700;
+                    font-size: 32px;
+                    position: absolute;
+                    width: 100%;
+                    height: 160px;
+                    text-align: center;
+                    left: 0;
+                    bottom: 0;
+                    background: rgba($color: #42424261, $alpha: .4);
+                    color: #fff;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                }
+            }
+        }
+        h1{
+            font-weight: 700;
+            font-size: 54px;
+            text-align: center;
+            margin: 60px 0 40px;
+        }
+        .why-cards{
+            .why-card{
+                display: flex;
+                img{
+                    width: 100px;
+                    height: 100px;
+                    object-fit: cover;
+                    object-position: center;
+                    margin-right: 10px;
+                }
+                h2{
+                    font-size: 28px;
+                    font-weight: 700;
+                }
+                p{
+                    font-size: 18px;
+                    font-size: 20px; 
+                }
+            }
+        }
+    }
+
+}

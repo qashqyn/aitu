@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Sen:wght@400;700;800&display=swap');
+
+#root{
+    font-family: 'Sen', sans-serif;
+    font-style: normal;
+    
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    height: 100%;
+    #main-content{
+        flex-grow: 1;
+    }
+}
+
+.modal-content{
+    .waiting{
+        color: var(--bs-warning);
+    }
+    .approved{
+        color: var(--bs-success);
+    }
+    .dissmissed{
+        color: var(--bs-danger);
+    }
+}
+.successModal{
+    .modal-title{
+        color: var(--bs-success);
+    }
+}
+.errorModal{
+    .modal-title{
+        color: var(--bs-danger);
+    }
+}

@@ -1,0 +1,11 @@
+#applicant-details{
+    .waiting{
+        color: var(--bs-warning);
+    }
+    .approved{
+        color: var(--bs-success);
+    }
+    .dissmissed{
+        color: var(--bs-danger);
+    }
+}
