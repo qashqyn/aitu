@@ -36,10 +36,10 @@ const Applicants = () => {
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Year</th>
-                            <th>Large Family</th>
                             <th>Disabled</th>
-                            <th>Incomplete Family</th>
                             <th>Orphan</th>
+                            <th>Incomplete Family</th>
+                            <th>Large Family</th>
                             <th>Date</th>
                             <th>Status</th>
                         </tr>
