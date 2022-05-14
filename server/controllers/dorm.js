@@ -6,8 +6,7 @@ export const register = async (req, res) => {
     const newForm = new Form(data);
 
     try {
-        await newForm.save();
-
+        const d = await newForm.save();
         res.status(201).json({...newForm, status: 'waiting'});
     } catch (error) {
         console.log(error);
@@ -25,7 +24,7 @@ export const changeStatus = async (req, res) => {
             return res.status(404).json({message: 'Applicant not found'});
         const result = await Form.findByIdAndUpdate(id, { ...data, _id: id}, {new: true});
         
-        res.status(200).json({ result });
+        res.status(204).json({ result });
     } catch (error) {
         res.status(500).json({message: "Something went wrong."});
 
@@ -38,9 +37,9 @@ export const getApplicants = async (req, res) => {
     try {
         let applicants;
         if(status === 'all')
-            applicants = await Form.find().sort('-isDisabled -isOrphan -fromIncompleteFamily -fromLargeFamily -createdAt');
+            applicants = await Form.find().select('-docs').sort('-isDisabled -isOrphan -fromIncompleteFamily -fromLargeFamily -createdAt');
         else    
-            applicants = await Form.find().where('status').equals(status).sort('-isDisabled -isOrphan -fromIncompleteFamily -fromLargeFamily -createdAt');
+            applicants = await Form.find().select('-docs').where('status').equals(status).sort('-isDisabled -isOrphan -fromIncompleteFamily -fromLargeFamily -createdAt');
 
         res.status(200).json(applicants);
     } catch (error) {

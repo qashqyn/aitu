@@ -9,7 +9,7 @@ import moment from 'moment';
 import './styles.scss';
 
 const Applicants = () => {
-    const { data: applicants } = useSelector((state)=>state.dorm);
+    const { data: applicants, isLoading } = useSelector((state)=>state.dorm);
     const dispatch = useDispatch();
     const [status, setStatus] = useState('all');
 
@@ -28,7 +28,7 @@ const Applicants = () => {
             <Button variant="danger" value='dissmissed' onClick={fetchApplicants} >Dissmissed</Button>
             <Button variant="warning" value='waiting' onClick={fetchApplicants} >Waiting</Button>
 
-            {(applicants && applicants.length > 0) ? (
+            {(!isLoading && applicants && applicants.length>0) ? (
                 <Table striped bordered hover responsive>
                     <thead>
                         <tr>
@@ -45,8 +45,7 @@ const Applicants = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {
-                        applicants.map((applicant, key) => (
+                        {applicants && applicants.map((applicant, key) => (
                             <LinkContainer key={key} to={applicant._id}>
                                 <tr>
                                     <td>{key+1}</td>

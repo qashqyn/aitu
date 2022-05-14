@@ -4,14 +4,16 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 import dormRoutes from './routes/dorm.js';
+import userRoutes from './routes/user.js';
 
 const app = express();
 
-app.use(bodyParser.json({linit: "30mb", extended: true}));
-app.use(bodyParser.urlencoded({linit: "30mb", extended: true}));
+app.use(bodyParser.json({limit: "50mb", extended: true}));
+app.use(bodyParser.urlencoded({limit: "50mb",parameterLimit: 100000, extended: true}));
 app.use(cors());
 
 app.use('/dorm', dormRoutes);
+app.use('/user', userRoutes);
 
 const CONNECTION_URL = 'mongodb+srv://kanat:KanatAITU2022@cluster0.uayng.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 const PORT = 5000;

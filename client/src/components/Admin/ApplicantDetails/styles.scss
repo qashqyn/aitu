@@ -1,4 +1,17 @@
 #applicant-details{
+    h1{
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+    p{
+        font-weight: 700;
+        span{
+            font-weight: normal;
+        }
+    }
+    h5{
+        font-weight: 700;
+    }
     .waiting{
         color: var(--bs-warning);
     }
@@ -7,5 +20,10 @@
     }
     .dissmissed{
         color: var(--bs-danger);
+    }
+
+    .buttons{
+        display: flex;
+        gap: 10px
     }
 }
