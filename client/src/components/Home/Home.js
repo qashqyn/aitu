@@ -16,6 +16,9 @@ import hackatonIcon from '../../images/hackatons-icon.png';
 import sustainabilityIcon from '../../images/sustainability-icon.png';
 // carousel
 import Carousel1 from '../../images/carousel1.png';
+import Carousel2 from '../../images/carousel2.png';
+import Carousel3 from '../../images/carousel3.png';
+import Carousel4 from '../../images/carousel4.png';
 
 const whyAITU = [
     {img: ruskinIcon, title: 'Ruskin Modules', description: 'Work with students from other courses to tackle challenges, and develop your professional skills.'},
@@ -26,7 +29,7 @@ const whyAITU = [
     {img: sustainabilityIcon, title: 'Sustainability', description: `We're incorporating sustainability and environmental awareness into every aspect of university life.`},
 ];
 
-const carouselItems = [Carousel1];
+const carouselItems = [Carousel1, Carousel2, Carousel3, Carousel4];
 
 const Home = () => {
     return (

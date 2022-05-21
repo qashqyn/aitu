@@ -27,10 +27,13 @@ const Admin = () => {
                             <LinkContainer to="applicants">
                                 <Nav.Link>Applicants List</Nav.Link>
                             </LinkContainer>
+                            <LinkContainer to="dorms">
+                                <Nav.Link>Dorms</Nav.Link>
+                            </LinkContainer>
                             <Nav.Link onClick={logout} >Log out</Nav.Link>
                         </Nav>
                     </Col>
-                    <Col xs={10}>
+                    <Col xs={10} className="pb-3">
                     <Outlet/>
                     </Col>
                 </Row>

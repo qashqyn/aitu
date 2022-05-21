@@ -1,0 +1,27 @@
+#buildings{
+    .dorm{
+
+        .floors{
+            .floor{
+                h4{
+                    display: flex;
+                    button{
+                        margin-left: auto;
+                    }
+                }
+                .rooms{
+                    .room{
+                        .card{
+                            height: 100%;
+                            .tenants{
+                                .tenant{
+                                    cursor: pointer;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

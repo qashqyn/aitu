@@ -6,7 +6,8 @@ import NavBar from "./components/Navbar/NavBar";
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
-// import Activities from "./components/Activities/Activities";
+import Activities from "./components/Activities/Activities";
+import Clubs from "./components/Clubs/Clubs";
 import Registration from "./components/Registration/Registration";
 import Study from "./components/Study/Study";
 import Teaching from "./components/Study/Teaching/Teaching";
@@ -17,6 +18,7 @@ import './main.scss';
 import Admin from "./components/Admin/Admin";
 import Applicants from "./components/Admin/Applicants/Applicants";
 import ApplicantDetails from "./components/Admin/ApplicantDetails/ApplicantsDetails";
+import Buildings from "./components/Admin/Buildings/Buildings";
 
 const App = () => {
     return (
@@ -30,13 +32,12 @@ const App = () => {
                     <Route path="/study" exact element={<Study />}/> 
                     <Route path="/study/teaching" exact element={<Teaching />}/> 
                     <Route path="/study/options" exact element={<StudyOptions />}/> 
-                    {/* 
                     <Route path="/activities" exact element={<Activities />}/>
-                    <Route path="/clubs" exact element={<Schedule />}/>
-                */}
+                    <Route path="/clubs" exact element={<Clubs />}/>
                     <Route path="/admin" element={<Admin />}>
                         <Route path="applicants" element={<Applicants />} />
                         <Route path="applicants/:id" element={<ApplicantDetails />} />
+                        <Route path="dorms" element={<Buildings />} />
                     </Route>
                 </Routes>
             </div>
