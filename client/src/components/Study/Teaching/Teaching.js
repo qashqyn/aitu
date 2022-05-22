@@ -12,10 +12,10 @@ const Teaching = () => {
         <div id="teaching">
             <Container>
                 <h1>STUDY WITH AITU COURSES</h1>
-                <a href="">
+                <a href="https://www.coursera.org/" target="_blank">
                     <Image src={CourseraImg} />
                 </a>
-                <a href="">
+                <a href="https://www.netacad.com/"  target="_blank">
                     <Image src={CiscoImg} />
                 </a>
             </Container>

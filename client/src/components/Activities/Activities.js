@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { Carousel, Col, Container, Image, Row, Spinner } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux';
-import { getActivities } from "../../api";
+import { getActivities } from "../../actions/activities";
+import moment from "moment";
 
 import ActivitiesImg1 from '../../images/Activities1.png';
 import Carousel2 from '../../images/carousel2.png';
@@ -13,14 +14,11 @@ import './styles.scss';
 const carouselItems = [ActivitiesImg1, Carousel2, Carousel3, Carousel4];
 
 const Activities = () => {
-    const activities = null;
-    const isLoading = true;
-    // const { activities } = useSelector((state) => state.activities);
-    // const { isLoading } = useSelector((state) => state.dorm);
-    // const dispatch = useDispatch();
-    // useEffect(() => {
-    //     dispatch(getActivities());
-    // }, [dispatch]);
+    const { data: activities, isLoading } = useSelector((state) => state.activity);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getActivities());
+    }, [dispatch]);
 
     return (
         <div id="activities">
@@ -41,27 +39,41 @@ const Activities = () => {
                     </div>
                 </div>
                     {(isLoading && !activities) ? (
-                        <div className="text-center">
+                        <div className="text-center p-5">
                             <Spinner animation="border" role="status">
                                 <span className="visually-hidden">Загрузка...</span>
                             </Spinner>
                         </div>
-                    ) : (
-                        <Row xs={1} md={2} className="activity-cards">
-                            {activities.map((activity, key) => (
-                                <Col key={key}>
-                                    <a href={activity.link} target="_blank">
-                                        <div className="activity-card">
-                                            <Image src={activity.img} />
-                                            <div className="activity-card-title">
-                                                <h3>{activity.name}</h3>
+                    ) : (activities && activities.length>0) ? (
+                            <Row xs={1} md={2} lg={3} className="activity-cards">
+                                {activities.map((activity, key) => (
+                                    <Col key={key}>
+                                        {activity.link ? (
+                                            <a href={activity.link} target="_blank">
+                                                <div className="activity-card">
+                                                    <Image src={activity.image} />
+                                                    <div className="activity-card-title">
+                                                        <h3>{activity.date && (`${moment(activity.date).format('DD.MM.YYYY')} - `)}{activity.title}</h3>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        ) : (
+                                            <div className="activity-card">
+                                                <Image src={activity.image} />
+                                                <div className="activity-card-title">
+                                                    <h3>{activity.date && (`${moment(activity.date).format('DD.MM.YYYY')} - `)}{activity.title}</h3>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </a>
-                                </Col>
-                            ))}
-                        </Row>
-                    )}
+                                        )}
+                                    </Col>
+                                ))}
+                            </Row>
+                        ) : (
+                            <div className="text-center p-5">
+                                <h3>No activities yet</h3>
+                            </div>
+                        )
+                    }
             </Container>
         </div>
     )

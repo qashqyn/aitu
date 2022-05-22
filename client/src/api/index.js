@@ -19,6 +19,9 @@ export const getBuildings = () => API.get('/dorm/buildings');
 export const addBuilding = (data) => API.post('/dorm/buildings/addbuilding', data);
 export const addRoom = (data) => API.post('/dorm/buildings/addroom', data);
 
+export const createActivity = (data) => API.post('/activities/', data);
+export const deleteActivity = (id) => API.delete(`/activities/${id}`);
 export const getActivities = () => API.get('/activities/');
+export const getActivity = (id) => API.get(`/activities/${id}`);
 
 export const login = (formData) => API.post('user/login', formData, {validateStatus: function (status) { return true }});

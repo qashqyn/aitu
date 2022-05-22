@@ -2,8 +2,8 @@ import { combineReducers } from "redux";
 
 import dorm from './dorm';
 import auth from './auth';
-import activities from './activities';
+import activity from './activity';
 
 export default combineReducers({
-    dorm, auth, activities
+    dorm, auth, activity
 });

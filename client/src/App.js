@@ -1,6 +1,6 @@
 import React from "react";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import NavBar from "./components/Navbar/NavBar";
 import Footer from "./components/Footer/Footer";
@@ -19,6 +19,7 @@ import Admin from "./components/Admin/Admin";
 import Applicants from "./components/Admin/Applicants/Applicants";
 import ApplicantDetails from "./components/Admin/ApplicantDetails/ApplicantsDetails";
 import Buildings from "./components/Admin/Buildings/Buildings";
+import AdminActivities from "./components/Admin/Activities/Activities";
 
 const App = () => {
     return (
@@ -35,10 +36,14 @@ const App = () => {
                     <Route path="/activities" exact element={<Activities />}/>
                     <Route path="/clubs" exact element={<Clubs />}/>
                     <Route path="/admin" element={<Admin />}>
+                        <Route path="" element={<Navigate to="applicants" replace />} />
+                        <Route path="*" element={<Navigate to="applicants" replace />} />
                         <Route path="applicants" element={<Applicants />} />
                         <Route path="applicants/:id" element={<ApplicantDetails />} />
                         <Route path="dorms" element={<Buildings />} />
+                        <Route path="activities" element={<AdminActivities />} />
                     </Route>
+                    <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </div>
             <Footer />

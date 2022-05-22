@@ -1,0 +1,36 @@
+#image-preview{
+    aspect-ratio: 1/1;
+    width: 100%;
+    overflow: hidden;
+    img{
+        min-width: 100%;
+        width: 100%;
+        min-height: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+#form-image{
+    cursor: pointer;
+    width: 100%;
+    input{
+        display: none;
+    }
+}
+
+#activities{
+    .card{
+        .card-body{
+            display: flex;
+            flex-direction: column;
+            .date{
+                padding-top: 10px;
+                padding-bottom: 0;
+                margin: auto 0 10px;
+                color: var(--bs-secondary);
+                text-align: right;
+            }
+        }
+    }
+}
