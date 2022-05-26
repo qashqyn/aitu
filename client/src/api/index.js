@@ -13,6 +13,7 @@ export const getApplicants = (status) => API.get(`/dorm/applicants?status=${stat
 export const getApplicant = (id) => API.get(`/dorm/applicants/${id}`);
 export const changeStatus = (id, newData) => API.patch(`/dorm/applicants/${id}`, newData);
 export const openRegistration = (data) => API.post(`/dorm/open`, data);
+export const changeRegistration = (data) => API.post(`/dorm/change_reg_time`, data);
 export const fetchRegistrationTime = () => API.get(`/dorm/reg_time`);
 
 export const getBuildings = () => API.get('/dorm/buildings');

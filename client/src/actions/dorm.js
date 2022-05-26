@@ -53,6 +53,16 @@ export const openRegistration = (data) => async (dispatch) => {
         
     }
 }
+export const changeRegistration = (data) => async (dispatch) => {
+    try {
+        const {regTime} = await api.changeRegistration(data);
+
+        dispatch({type: OPEN_REGISTRATION, payload: {regTime}});
+    } catch (error) {
+        console.log(error);       
+        
+    }
+}
 
 export const getRegTime = () => async (dispatch) => {
     try {

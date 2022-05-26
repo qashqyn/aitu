@@ -114,6 +114,22 @@ export const openRegistration = async (req, res) => {
         res.status(500).json({error});
     }
 }
+export const changeRegistrationTime = async (req, res) => {
+    const {start, end} = req.body;
+    let isOpen = false;
+    const today = new Date();
+    if(start < today && end > today){
+        isOpen = true;
+    }
+
+    try {
+        const result = await RegTime.findOneAndUpdate({start, end, isOpen});
+        res.status(201).json({regTime: result});
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({error});
+    }
+}
 
 export const getRegistrationTime = async (req, res) => {
     try {

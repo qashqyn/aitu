@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getApplicants, openRegistration } from "../../../actions/dorm";
+import { changeRegistration, getApplicants, openRegistration } from "../../../actions/dorm";
 import { LinkContainer } from 'react-router-bootstrap';
 
 import { Button, ButtonGroup, Form, Modal, Spinner, Table } from 'react-bootstrap';
@@ -16,6 +16,7 @@ const Applicants = () => {
     const dispatch = useDispatch();
     const [status, setStatus] = useState('all');
     const [openModal, setOpenModal] = useState(false);
+    const [changeModal, setChangeModal] = useState(false);
 
     const today = moment(new Date()).format('YYYY-MM-DD');
 
@@ -32,12 +33,15 @@ const Applicants = () => {
         setOpenModal(true);
     }
 
-    const closeModal = () => {
-        // e.preventDefault();
-        setOpenModal(false);
-    }
+    const closeModal = () => setOpenModal(false);
 
-    const handleFormChange = (e) => {
+    const openChangeModal = (e) => {
+        e.preventDefault();
+        setChangeModal(true);
+    }
+    const closeChangeModal = () => setChangeModal(false);
+
+    const handleOpenFormChange = (e) => {
         e.preventDefault();
         setErrors({...errors, [e.target.name]: ''});
         setFormData({...formData, [e.target.name]: e.target.value});
@@ -64,8 +68,13 @@ const Applicants = () => {
         }
 
         if(errCnt === 0){
-            dispatch(openRegistration(formData));
-            setOpenModal(false);
+            if(changeModal === true){
+                dispatch(changeRegistration(formData));
+                setChangeModal(false);
+            }else if(openModal === true){
+                dispatch(openRegistration(formData));
+                setOpenModal(false);
+            }
         }
     }
 
@@ -77,7 +86,7 @@ const Applicants = () => {
             <Modal show={openModal} onHide={closeModal} size="lg">
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        Open Registration
+                        Set Registration Period
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -88,18 +97,48 @@ const Applicants = () => {
                         </Form.Group>
                         <Form.Group controlId="form-start">
                             <Form.Label>Start</Form.Label>
-                            <Form.Control type="date" min={moment(new Date()).format('YYYY-MM-DD')} name="start" isInvalid={errors.start} onChange={handleFormChange} />
+                            <Form.Control type="date" min={moment(new Date()).format('YYYY-MM-DD')} name="start" isInvalid={errors.start} onChange={handleOpenFormChange} />
                             <Form.Control.Feedback type="invalid">{errors.start}</Form.Control.Feedback>
                         </Form.Group>
                         <Form.Group controlId="form-end">
                             <Form.Label>End</Form.Label>
-                            <Form.Control type="date" min={moment(new Date()).format('YYYY-MM-DD')} name="end" isInvalid={errors.end} onChange={handleFormChange}/>
+                            <Form.Control type="date" min={moment(new Date()).format('YYYY-MM-DD')} name="end" isInvalid={errors.end} onChange={handleOpenFormChange}/>
                             <Form.Control.Feedback type="invalid">{errors.end}</Form.Control.Feedback>
                         </Form.Group>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={closeModal}>Cancel</Button>
+                    <Button variant="success" onClick={handleSubmit} >Submit</Button>
+                </Modal.Footer>
+            </Modal>
+
+            <Modal show={changeModal} onHide={closeChangeModal} size="lg">
+                <Modal.Header closeButton>
+                    <Modal.Title>
+                        Change Registration Period
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group controlId="form-main">
+                            <Form.Control className="d-none" isInvalid={errors.main} />
+                            <Form.Control.Feedback type="invalid">{errors.main}</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group controlId="form-start">
+                            <Form.Label>Start</Form.Label>
+                            <Form.Control type="date" min={moment(new Date()).format('YYYY-MM-DD')} name="start" isInvalid={errors.start} onChange={handleOpenFormChange} />
+                            <Form.Control.Feedback type="invalid">{errors.start}</Form.Control.Feedback>
+                        </Form.Group>
+                        <Form.Group controlId="form-end">
+                            <Form.Label>End</Form.Label>
+                            <Form.Control type="date" min={moment(new Date()).format('YYYY-MM-DD')} name="end" isInvalid={errors.end} onChange={handleOpenFormChange}/>
+                            <Form.Control.Feedback type="invalid">{errors.end}</Form.Control.Feedback>
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={closeChangeModal}>Cancel</Button>
                     <Button variant="success" onClick={handleSubmit} >Submit</Button>
                 </Modal.Footer>
             </Modal>
@@ -116,6 +155,8 @@ const Applicants = () => {
                                 <div>Registration is <span className="text-danger">Closed</span></div>
                             ) }
                             Registration period: {moment(regTime.start).format('YYYY-MM-DD') + "  -  " + moment(regTime.end).format('YYYY-MM-DD')}
+                            <br/>
+                            <Button variant="warning" className="reg-change" onClick={openChangeModal}>Change registration period</Button>
                         </div>
                     ) : (
                         <div> 
